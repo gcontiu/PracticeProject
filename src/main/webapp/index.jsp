@@ -8,5 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head><title>Simple jsp page</title></head>
-<body>Serus Gelu! Place your content here</body>
+<body>Serus Gelu! Place your content here
+<br>
+<a href="/simple.htm">Click here for simple controller</a><br/>
+<a href="/create-company.htm">Add a new company</a>
+</body>
 </html>
