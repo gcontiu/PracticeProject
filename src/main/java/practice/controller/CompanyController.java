@@ -1,13 +1,18 @@
 package practice.controller;
 
+import org.hibernate.validator.method.MethodConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import practice.dao.CompanyDao;
 import practice.model.Company;
+
+import javax.validation.ConstraintViolationException;
+import javax.validation.Valid;
 
 /**
  * Created by IntelliJ IDEA.
@@ -23,13 +28,12 @@ public class CompanyController {
     private CompanyDao companyDao;
 
     @RequestMapping(value = "create-company.htm", method = RequestMethod.POST)
-    public String createCompany(@ModelAttribute("newCompany") Company company) {
-        try {
-            companyDao.create(company);
-        } catch(Exception ex) {
-            System.out.println(ex);
-            return "error";
+    public String createCompany(@Valid @ModelAttribute("newCompany") Company company, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "addCompany";
         }
+            companyDao.create(company);
+
         System.out.println("Successfully added company " + company.getName());
         return "success";
     }

@@ -14,8 +14,8 @@
 <body>
 
 <form:form commandName="newCompany" method="POST" name="addCompany">
+    <form:errors path="name" /><br/>
     <form:input path="name" />
-    <form:errors path="name" />
     <input type="submit" value="Add Company">
 </form:form>
 

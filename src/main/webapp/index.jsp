@@ -12,5 +12,6 @@
 <br>
 <a href="/simple.htm">Click here for simple controller</a><br/>
 <a href="/create-company.htm">Add a new company</a>
+<a href="/create-employee.htm">Add a new employee</a>
 </body>
 </html>

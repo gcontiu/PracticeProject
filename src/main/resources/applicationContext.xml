@@ -59,6 +59,16 @@
 
     <bean id="employeeDao" class="practice.dao.EmployeeDao" parent="genericDao" />
 
+
+
+    <!-- ================================================== -->
+    <!--            Validations                             -->
+    <!-- ================================================== -->
+
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+    <bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor" />
+
+
     <!-- ================================================== -->
     <!--            Transactions configuration              -->
     <!-- ================================================== -->
@@ -77,5 +87,6 @@
         <aop:pointcut id="daoPointcut" expression="execution(* practice.dao.*.*(..))" />
         <aop:advisor advice-ref="daoAdvice" pointcut-ref="daoPointcut" />
     </aop:config>
+
 
 </beans>
