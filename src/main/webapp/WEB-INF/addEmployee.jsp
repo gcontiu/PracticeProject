@@ -16,11 +16,17 @@
     <title>Add Employee</title>
 </head>
 <body>
-    <form:form commandName="newEmployee" method="POST">
-        <form:errors path="name" /><br/>
-        <form:input path="name">name</form:input>
+    <form:form commandName="employee" method="POST">
 
-        <form:option items="${companies}"  value="company" />
+        <form:errors path="name" /><br/>
+        Name: <form:input path="name" /><br/>
+
+        <form:errors path="company" /><br/>
+        Company: <form:select path="company">
+            <form:options items="${companies}" itemValue="id" />
+        </form:select>
+
+        <input type="submit" value="Add Employee" />
     </form:form>
 
 </body>

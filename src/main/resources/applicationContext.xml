@@ -46,9 +46,9 @@
         <property name="packagesToScan" value="practice.model,practice.dao" />
         <property name="hibernateProperties">
             <props>
-                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
-                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
-                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.show_sql">true</prop>
             </props>
         </property>
     </bean>
@@ -67,6 +67,10 @@
 
     <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
     <bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor" />
+
+    <bean id="employeeValidator" class="practice.controller.validator.EmployeeValidator"/>
+
+    <bean id="employeePropertyEditor" class="practice.controller.validator.EmployeePropertyEditor" />
 
 
     <!-- ================================================== -->

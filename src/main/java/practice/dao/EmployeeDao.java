@@ -1,6 +1,7 @@
 package practice.dao;
 
 import practice.dao.GenericDao;
+import practice.model.Employee;
 
 /**
  * Created by IntelliJ IDEA.
@@ -10,4 +11,8 @@ import practice.dao.GenericDao;
  * To change this template use File | Settings | File Templates.
  */
 public class EmployeeDao extends GenericDao<practice.model.Employee> {
+
+    public EmployeeDao() {
+        setClazz(Employee.class);
+    }
 }

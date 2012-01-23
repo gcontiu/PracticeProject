@@ -1,7 +1,12 @@
 package practice.dao;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Expression;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
@@ -25,6 +30,16 @@ public abstract class GenericDao< T extends Serializable > {
 
     public T getById(Long id) {
         return (T) getCurrentSession().get(clazz, id);
+    }
+
+    public T getByPropery(String propertyName, String value) {
+        Criteria criteria =  getCurrentSession().createCriteria(clazz);
+        criteria.add(Restrictions.eq(propertyName, value));
+        List result = criteria.list();
+        if (result != null && !result.isEmpty()) {
+            return (T) result.get(0);
+        }
+        return null;
     }
 
     public List<T> getAll() {

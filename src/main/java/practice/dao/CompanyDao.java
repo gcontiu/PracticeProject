@@ -12,4 +12,7 @@ import practice.model.Company;
  */
 public class CompanyDao extends GenericDao<Company> {
 
+    public CompanyDao() {
+        setClazz(Company.class);
+    }
 }

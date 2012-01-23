@@ -1,6 +1,9 @@
 package practice.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
@@ -18,6 +21,8 @@ public class Employee implements Serializable {
     private Long id;
 
     @Column
+    @NotEmpty
+    @Size(min = 1, max = 50)
     private String name;
 
     @ManyToOne
@@ -38,5 +43,13 @@ public class Employee implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 }
