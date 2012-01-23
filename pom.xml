@@ -10,7 +10,6 @@
     <packaging>war</packaging>
 
 
-
     <repositories>
         <repository>
             <id>MavenRepo</id>
