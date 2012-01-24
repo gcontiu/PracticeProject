@@ -1,6 +1,5 @@
 package practice.controller;
 
-import org.hibernate.validator.method.MethodConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import practice.dao.CompanyDao;
 import practice.model.Company;
 
-import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 
 /**

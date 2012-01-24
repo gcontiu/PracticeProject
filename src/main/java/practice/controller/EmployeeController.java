@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import practice.controller.validator.EmployeeEditor;
+import practice.controller.validator.CompanyEditor;
 import practice.controller.validator.EmployeeValidator;
 import practice.dao.CompanyDao;
 import practice.dao.EmployeeDao;
@@ -20,11 +20,11 @@ import javax.validation.Valid;
 import java.util.List;
 
 /**
- * Created by IntelliJ IDEA.
+ *
  * User: anghel
  * Date: 1/23/12
  * Time: 6:24 PM
- * To change this template use File | Settings | File Templates.
+ *
  */
 @Controller
 public class EmployeeController {
@@ -39,15 +39,20 @@ public class EmployeeController {
     private EmployeeValidator employeeValidator;
 
     @Autowired
-    private EmployeeEditor employeeEditor;
+    private CompanyEditor companyEditor;
+
 
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
-//        dataBinder.setValidator(employeeValidator);
-//        dataBinder.setDisallowedFields("company");
-        dataBinder.registerCustomEditor(Company.class, employeeEditor);
+        dataBinder.setValidator(employeeValidator);
+        dataBinder.registerCustomEditor(Company.class, companyEditor);
     }
 
+    /**
+     * Adds a new Employee instance to the model s.t. it will be used by the form.
+     * @param model the M from MVC
+     * @return view name, corresponding to a jsp file.
+     */
     @RequestMapping(value = "/create-employee.htm", method = RequestMethod.GET)
     public String addEmployee(Model model) {
         List companies = companyDao.getAll();
@@ -60,7 +65,8 @@ public class EmployeeController {
     }
     
     @RequestMapping(value = "/create-employee.htm", method = RequestMethod.POST)
-    public String addEmployee(@Valid @ModelAttribute("employee") Employee employee, BindingResult bindingResult) {
+    public String addEmployee(@Valid @ModelAttribute("employee") Employee employee,
+                              BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return "addEmployee";
