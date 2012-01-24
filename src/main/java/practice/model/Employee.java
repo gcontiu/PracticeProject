@@ -1,6 +1,7 @@
 package practice.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -15,6 +16,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "employees")
+@Validated
 public class Employee implements Serializable {
 
     @Id @GeneratedValue

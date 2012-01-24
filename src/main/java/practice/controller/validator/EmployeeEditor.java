@@ -13,15 +13,28 @@ import java.beans.PropertyEditorSupport;
  * Time: 11:52 PM
  * To change this template use File | Settings | File Templates.
  */
-public class EmployeePropertyEditor extends PropertyEditorSupport {
+public class EmployeeEditor extends PropertyEditorSupport {
 
     @Autowired
     private CompanyDao companyDao;
 
+    private String format;
+
+    public void setFormat(String format) {
+        this.format = format;
+    }
+
+
+    @Override
     public void setAsText(String s) {
         Object value = getValue();
         Company company = companyDao.getById(Long.parseLong(s));
         System.out.println(company);
         setValue(company);
+    }
+
+    @Override
+    public String getAsText() {
+        return "ssssttrrrr";
     }
 }

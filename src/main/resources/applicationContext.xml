@@ -70,9 +70,19 @@
 
     <bean id="employeeValidator" class="practice.controller.validator.EmployeeValidator"/>
 
-    <bean id="employeePropertyEditor" class="practice.controller.validator.EmployeePropertyEditor" />
-
-
+    <bean id="employeePropertyEditor" class="practice.controller.validator.EmployeeEditor" />
+<!--
+    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <property name="customEditors">
+            <map>
+                <entry key="practice.model.Company">
+                    <bean class="practice.controller.validator.EmployeeEditor                   <property name="format" value="asd" />
+                    </bean>
+                </entry>
+            </map>
+        </property>
+    </bean>
+-->
     <!-- ================================================== -->
     <!--            Transactions configuration              -->
     <!-- ================================================== -->

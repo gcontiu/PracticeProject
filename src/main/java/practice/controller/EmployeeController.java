@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import practice.controller.form.EmployeeForm;
-import practice.controller.validator.EmployeePropertyEditor;
+import practice.controller.validator.EmployeeEditor;
 import practice.controller.validator.EmployeeValidator;
 import practice.dao.CompanyDao;
 import practice.dao.EmployeeDao;
@@ -40,12 +39,13 @@ public class EmployeeController {
     private EmployeeValidator employeeValidator;
 
     @Autowired
-    private EmployeePropertyEditor employeePropertyEditor;
+    private EmployeeEditor employeeEditor;
 
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
 //        dataBinder.setValidator(employeeValidator);
-        dataBinder.registerCustomEditor(Employee.class, employeePropertyEditor);
+//        dataBinder.setDisallowedFields("company");
+        dataBinder.registerCustomEditor(Company.class, employeeEditor);
     }
 
     @RequestMapping(value = "/create-employee.htm", method = RequestMethod.GET)
@@ -60,14 +60,15 @@ public class EmployeeController {
     }
     
     @RequestMapping(value = "/create-employee.htm", method = RequestMethod.POST)
-    public String addEmployee(@Valid @ModelAttribute("newEmployee") Employee employee, BindingResult bindingResult) {
+    public String addEmployee(@Valid @ModelAttribute("employee") Employee employee, BindingResult bindingResult) {
+
         if (bindingResult.hasErrors()) {
             return "addEmployee";
         }
         
-//        employeeDao.create(employee);
+        employeeDao.create(employee);
         
-        System.out.println("Successfully addded the new employee " + employee.getName());
+        System.out.println("Successfully added the new employee " + employee.getName());
         return "success";        
     }
 }

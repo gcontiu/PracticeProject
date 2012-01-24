@@ -10,6 +10,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <html>
 <head>
@@ -22,9 +23,11 @@
         Name: <form:input path="name" /><br/>
 
         <form:errors path="company" /><br/>
-        Company: <form:select path="company">
-            <form:options items="${companies}" itemValue="id" />
-        </form:select>
+        <spring:bind path="employee.company">
+            Company: <form:select path="company">
+                <form:options items="${companies}" itemLabel="name" itemValue="id"/>
+            </form:select>
+        </spring:bind>
 
         <input type="submit" value="Add Employee" />
     </form:form>
