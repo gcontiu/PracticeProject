@@ -12,5 +12,8 @@
 </head>
 <body>
     Your action was successful ! Congrats !
+    <p>
+        <a href="index.jsp">Main Menu</a>
+    </p>
 </body>
 </html>
