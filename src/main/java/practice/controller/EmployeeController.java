@@ -63,7 +63,7 @@ public class EmployeeController {
                 
         return "addEmployee";
     }
-    
+
     @RequestMapping(value = "/create-employee.htm", method = RequestMethod.POST)
     public String addEmployee(@Valid @ModelAttribute("employee") Employee employee,
                               BindingResult bindingResult) {
@@ -77,4 +77,7 @@ public class EmployeeController {
         System.out.println("Successfully added the new employee " + employee.getName());
         return "success";        
     }
+
+
+
 }

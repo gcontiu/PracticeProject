@@ -17,7 +17,9 @@
     <title>Add Employee</title>
 </head>
 <body>
-    <form:form commandName="employee" method="POST">
+
+
+    <form:form commandName="employee" method="POST" >
 
         <form:errors path="name" /><br/>
         Name: <form:input path="name" /><br/>

@@ -11,13 +11,13 @@ import practice.dao.CompanyDao;
 import practice.model.Company;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
  * User: anghel
  * Date: 1/23/12
  * Time: 12:13 PM
- * To change this template use File | Settings | File Templates.
  */
 @Controller
 public class CompanyController {
@@ -43,4 +43,13 @@ public class CompanyController {
         model.addAttribute("newCompany", newCompany);
         return "addCompany";
     }
+
+    @RequestMapping(value = "list-companies.htm", method = RequestMethod.GET)
+    public String getCompanies(Model model) {
+        System.out.println("getting companies...");
+        List companies = companyDao.getAll();
+        model.addAttribute("companies", companies);
+        return "list-companies";
+    }
+
 }
