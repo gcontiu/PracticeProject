@@ -6,6 +6,7 @@ import org.springframework.validation.annotation.Validated;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by IntelliJ IDEA.
@@ -31,6 +32,10 @@ public class Employee implements Serializable {
     @JoinColumn(name = "company_id", nullable = false)
     private Company company;
 
+    @Column
+    @Temporal(value = TemporalType.DATE)
+    private Date createdOn;
+
     public Long getId() {
         return id;
     }
@@ -53,5 +58,13 @@ public class Employee implements Serializable {
 
     public void setCompany(Company company) {
         this.company = company;
+    }
+
+    public Date getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(Date createdOn) {
+        this.createdOn = createdOn;
     }
 }
