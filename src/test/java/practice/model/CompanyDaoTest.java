@@ -7,5 +7,7 @@ package practice.model;
  * Time: 12:22 AM
  * To change this template use File | Settings | File Templates.
  */
+
 public class CompanyDaoTest {
+
 }

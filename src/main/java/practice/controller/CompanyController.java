@@ -39,6 +39,9 @@ public class CompanyController {
     @RequestMapping(value = "create-company.htm", method = RequestMethod.GET)
     public String addCompany(Model model) {
         System.out.println("Detected request for adding a company form...");
+
+        testHql();
+
         Company newCompany = new Company();
         model.addAttribute("newCompany", newCompany);
         return "addCompany";
@@ -50,6 +53,10 @@ public class CompanyController {
         List companies = companyDao.getAll();
         model.addAttribute("companies", companies);
         return "list-companies";
+    }
+
+    private void testHql() {
+        companyDao.testHql();
     }
 
 }
