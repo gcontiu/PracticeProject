@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * User: gelu
@@ -23,6 +24,9 @@ public class Company implements Serializable {
     @NotEmpty
     @Size(min = 3, max = 50)
     private String name;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created;
 
     public Long getId() {
         return id;
@@ -44,5 +48,13 @@ public class Company implements Serializable {
     @Override
     public String toString() {
         return getName();
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
     }
 }

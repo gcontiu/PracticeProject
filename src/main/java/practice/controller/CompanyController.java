@@ -56,7 +56,8 @@ public class CompanyController {
     }
 
     private void testHql() {
-        companyDao.testHql();
+//        companyDao.testHql();
+        companyDao.testJoinWithNoFK();
     }
 
 }
