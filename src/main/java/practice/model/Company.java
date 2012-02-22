@@ -28,6 +28,10 @@ public class Company implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
 
+    @Column(name = "Industry")
+    @Enumerated(EnumType.STRING)
+    private Industry industry;
+
     public Long getId() {
         return id;
     }
@@ -57,4 +61,14 @@ public class Company implements Serializable {
     public void setCreated(Date created) {
         this.created = created;
     }
+
+    public Industry getIndustry() {
+        return industry;
+    }
+
+    public void setIndustry(Industry industry) {
+        this.industry = industry;
+    }
 }
+
+
