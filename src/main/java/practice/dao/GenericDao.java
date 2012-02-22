@@ -1,13 +1,17 @@
 package practice.dao;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Expression;
 import org.hibernate.criterion.Restrictions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.object.SqlQuery;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,6 +23,7 @@ import java.util.List;
  */
 public abstract class GenericDao< T extends Serializable > {
 
+    private final Logger LOG = LoggerFactory.getLogger(GenericDao.class);
     private Class< T > clazz;
 
     @Autowired
@@ -64,7 +69,13 @@ public abstract class GenericDao< T extends Serializable > {
         delete(entity);
     }
 
-    protected Session getCurrentSession() {
+    public void deleteAll() {
+        Query query =  getCurrentSession().createQuery("delete from " + clazz.getSimpleName());
+        int rowCount = query.executeUpdate();
+        LOG.info("Deleted " + rowCount + " from " + clazz.getSimpleName());
+    }
+
+    public Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
     }
 
