@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import practice.dao.CompanyDao;
 import practice.model.Company;
+import practice.model.Industry;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -44,6 +45,7 @@ public class CompanyController {
 
         Company newCompany = new Company();
         model.addAttribute("newCompany", newCompany);
+        model.addAttribute("industries", Industry.values());
         return "addCompany";
     }
 

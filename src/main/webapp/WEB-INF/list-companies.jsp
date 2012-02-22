@@ -17,10 +17,13 @@
 
 <table border="1">
     <c:forEach var="company" items="${companies}">
-        <tr><td>${company}</td></tr>
+        <tr>
+            <td>${company}</td>
+            <td>${company.industry}</td>
+        </tr>
     </c:forEach>
 </table>
-
+                                    .
 </body>
 
 </html>

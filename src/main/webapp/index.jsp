@@ -10,8 +10,11 @@
 <head><title>Simple jsp page</title></head>
 <body>Serus Gelu! Place your content here
 <br>
+<div>
 <a href="/simple.htm">Click here for simple controller</a><br/>
 <a href="/create-company.htm">Add a new company</a>
+<a href="/list-companies.htm">List companies</a>
 <a href="/create-employee.htm">Add a new employee</a>
+</div>
 </body>
 </html>

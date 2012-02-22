@@ -6,6 +6,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <html>
 <title>Add Company</title>
@@ -17,9 +18,23 @@
 <body>
 
 <form:form commandName="newCompany" method="POST" name="addCompany">
-    <form:errors path="name" /><br/>
-    <form:input path="name" />
-    <input type="submit" value="Add Company">
+    <table>
+        <tr><td><form:errors path="name" /></td><tr/>
+
+        <tr><td><form:input path="name" /></td></tr>
+
+        <tr><td><form:errors path="industry" /> </td><tr>
+
+        <tr><td>
+            <spring:bind path="newCompany.industry">
+                <form:select path="industry">
+                    <form:options items="${industries}" />
+                </form:select>
+            </spring:bind>
+        </td></tr>
+
+        <input type="submit" value="Add Company">
+    </table>
 </form:form>
 
 <script type="text/javascript">
@@ -31,12 +46,11 @@
             type: "GET",
 
             success: function(data) {
-                alert(data);
                 $("#companiesList").html(data)
             },
 
             error: function() {
-                alert("nuuu")
+                alert("nuuu, eroare la ajaaax!")
             }
 
         })
