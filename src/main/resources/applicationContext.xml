@@ -18,48 +18,23 @@
     <!-- ================================================== -->
     <!--            High level configuration                -->
     <!-- ================================================== -->
+
+    <import resource="properties-config.xml" />
+
+    <import resource="db-config.xml" />
+
+    <import resource="dao-config.xml" />
+
+    <import resource="tx-configuration.xml" />
+
+    <!-- ================================================== -->
+    <!--                    MVC                             -->
+    <!-- ================================================== -->
     <context:annotation-config />
+
     <context:component-scan base-package="practice" />
 
     <mvc:annotation-driven/>
-
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="locations">
-            <list>
-                <value>classpath:database.properties</value>
-            </list>
-        </property>
-    </bean>
-
-    <!-- ================================================== -->
-    <!--            DB & Hbn configurations                 -->
-    <!-- ================================================== -->
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="${jdbc.driver}" />
-        <property name="url" value="${jdbc.url}" />
-        <property name="username" value="${jdbc.username}" />
-        <property name="password" value="${jdbc.password}" />
-    </bean>
-
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="packagesToScan" value="practice.model,practice.dao" />
-        <property name="hibernateProperties">
-            <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
-                <prop key="hibernate.hbm2ddl.auto">update</prop>
-                <prop key="hibernate.show_sql">true</prop>
-            </props>
-        </property>
-    </bean>
-
-    <bean id="genericDao" abstract="true" class="practice.dao.GenericDao"/>
-
-    <bean id="companyDao" class="practice.dao.CompanyDao" parent="genericDao" />
-
-    <bean id="employeeDao" class="practice.dao.EmployeeDao" parent="genericDao" />
-
-
 
     <!-- ================================================== -->
     <!--            Validations                             -->
@@ -71,26 +46,5 @@
     <bean id="employeeValidator" class="practice.controller.validator.EmployeeValidator"/>
 
     <bean id="employeePropertyEditor" class="practice.controller.validator.CompanyEditor" />
-
-
-    <!-- ================================================== -->
-    <!--            Transactions configuration              -->
-    <!-- ================================================== -->
-
-    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager" >
-        <property name="sessionFactory" ref="sessionFactory" />
-    </bean>
-
-    <tx:advice id="daoAdvice" transaction-manager="transactionManager" >
-        <tx:attributes>
-            <tx:method name="*"/>
-        </tx:attributes>
-    </tx:advice>
-
-    <aop:config>
-        <aop:pointcut id="daoPointcut" expression="execution(* practice.dao.*.*(..))" />
-        <aop:advisor advice-ref="daoAdvice" pointcut-ref="daoPointcut" />
-    </aop:config>
-
 
 </beans>
