@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <import resource="classpath*:properties-config-test.xml" />
+
+    <import resource="classpath*:db-config.xml" />
+
+    <import resource="tx-configuration.xml" />
+
+    <import resource="classpath*:dao-config.xml" />
+
+
+
+</beans>
