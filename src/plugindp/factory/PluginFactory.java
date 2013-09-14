@@ -19,16 +19,7 @@ public class PluginFactory {
 
     private static Properties properties = new Properties();
 
-//    static {
-//        InputStream is = PluginFactory.class.getClass().getResourceAsStream("plugins.properties");
-//        try {
-//            properties.load(is);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
     private PluginFactory() {
-
     }
 
     public static Appearance getInstance(String runningCustomerName) {
@@ -54,7 +45,6 @@ public class PluginFactory {
 
         } catch (ClassNotFoundException e) {
             System.out.println("Class " + className + " was not found.");
-
         } catch (InstantiationException e) {
             System.out.println("Class " + className + " Could not be instantiated.");
             throw new RuntimeException(e);
