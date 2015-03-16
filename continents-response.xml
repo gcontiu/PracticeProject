@@ -1,0 +1,21 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header/>
+    <SOAP-ENV:Body>
+        <ns2:getContinentResponse xmlns:ns2="http://spring.io/generated">
+            <ns2:continentIndex>777</ns2:continentIndex>
+        </ns2:getContinentResponse>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+
+
+
+        <!-- WHEN EXCEPTION IS THROWN -->
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+<SOAP-ENV:Header/>
+<SOAP-ENV:Body>
+    <SOAP-ENV:Fault>
+        <faultcode>SOAP-ENV:Server</faultcode>
+        <faultstring xml:lang="en">asd</faultstring>
+    </SOAP-ENV:Fault>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
